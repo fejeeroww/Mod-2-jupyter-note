@@ -1,0 +1,65 @@
+# Import necessary libraries
+import pandas as pd
+import csv
+import zipfile
+import os
+
+# 1. Import the provided salary data
+salary_data = pd.read_csv('salary_data.csv')
+
+# 2. Python function to accept employee names and return details
+def get_employee_details(name):
+    employee = salary_data[salary_data['Name'] == name]
+    if employee.empty:
+        raise ValueError(f"Employee '{name}' not found in the dataset.")
+    return employee.to_dict('records')[0]
+
+# 3. Data processing using a dictionary
+employee_dict = {}
+for _, row in salary_data.iterrows():
+    employee_dict[row['Name']] = {
+        'Department': row['Department'],
+        'Salary': row['Salary'],
+        'Years of Experience': row['Years of Experience']
+    }
+
+# 4. Error handling
+def safe_get_employee_details(name):
+    try:
+        return get_employee_details(name)
+    except ValueError as e:
+        print(f"Error: {e}")
+        return None
+
+# 5. Export employee details to CSV and zip it
+output_folder = 'Employee Profile'
+os.makedirs(output_folder, exist_ok=True)
+
+csv_file = os.path.join(output_folder, 'employee_details.csv')
+salary_data.to_csv(csv_file, index=False)
+
+zip_file = os.path.join(output_folder, 'employee_details.zip')
+with zipfile.ZipFile(zip_file, 'w') as zipf:
+    zipf.write(csv_file, os.path.basename(csv_file))
+
+print(f"Employee details exported to {zip_file}")
+
+# 6. R script to unzip the folder and display the data
+%%R
+library(readr)
+library(dplyr)
+
+# Unzip the file
+unzip("Employee Profile/employee_details.zip", exdir = "Employee Profile")
+
+# Read the CSV file
+employee_data <- read_csv("Employee Profile/employee_details.csv")
+
+# Display the data
+print(employee_data)
+
+# Summary statistics
+summary(employee_data)
+
+# Display the first few rows
+head(employee_data)
