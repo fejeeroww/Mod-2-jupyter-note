@@ -1,4 +1,4 @@
-# Mod-2-jupyter-note
+### BAN6420 python programming module 2 assignment by Uti Princess
 # Employee Data Processing
 
 This project contains a Jupyter Notebook for processing employee salary data, exporting it, and analyzing it using both Python and R.
@@ -15,7 +15,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Setup
 
-1. Clone this repository or download the files to your local machine.
+1. Download the files to your local machine.
 2. Ensure you have a file named `salary_data.csv` in the same directory as the Jupyter Notebook. This file should contain columns for Name, Department, Salary, and Years of Experience.
 
 ## Using the Jupyter Notebook
@@ -30,19 +30,9 @@ The Python section of the notebook does the following:
 1. Imports the salary data from `salary_data.csv`.
 2. Defines a function `get_employee_details(name)` to retrieve details for a specific employee.
 3. Processes the data into a dictionary for easy access.
-4. Implements error handling with `safe_get_employee_details(name)`.
+4. Implements error handling with processing salary data.
 5. Exports the employee details to a CSV file and zips it into an "Employee Profile" folder.
 
-To use the Python functions interactively:
-
-```python
-# Get details for an employee
-details = get_employee_details("John Doe")
-print(details)
-
-# Safely get details (with error handling)
-safe_details = safe_get_employee_details("Jane Smith")
-print(safe_details)
 
 ### R code of this project
 
@@ -53,14 +43,7 @@ Reads the CSV data.
 Displays the data and provides summary statistics.
 The R code runs automatically when you execute the last cell of the notebook.
 
-Customizing the Code
-To change the input file name, modify the pd.read_csv('salary_data.csv') line in the Python code.
-To change the output folder name, modify the output_folder = 'Employee Profile' line.
-To add more analysis in R, add your R code to the last cell of the notebook.
-Troubleshooting
-If you encounter a "File not found" error, ensure that salary_data.csv is in the same directory as the notebook.
-If R code doesn't run, make sure you have the R kernel installed in Jupyter and the required R libraries (readr, dplyr) installed.
-Additional Notes
+
 The exported CSV and zip files will be created in an "Employee Profile" folder in the same directory as the notebook.
 Make sure you have write permissions in the directory where you're running the notebook.
 For any additional help or questions, please open an issue in the project repository.
@@ -72,6 +55,4 @@ This README file provides comprehensive instructions on:
 2. How to use the Jupyter Notebook
 3. Explanation of the Python code and how to use it interactively
 4. Explanation of the R code
-5. How to customize the code
-6. Troubleshooting common issues
-7. Additional notes on file locations and permissions
+5. Additional notes on file locations and permissions
